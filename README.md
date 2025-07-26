@@ -91,10 +91,4 @@ An intelligent, machine learning–powered platform built with **Flask**, **Scik
 
 ---
 
-## 🚀 How to Run Locally
 
-### 1. Clone the Repository
-
-```bash
-git clone <your-repo-url>
-cd Infotact
