@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Task Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #222;
+        }
+        .container {
+            max-width: 480px;
+            margin: 60px auto;
+            background: rgba(255,255,255,0.97);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            padding: 36px 32px 28px 32px;
+            position: relative;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 28px;
+            color: #2575fc;
+            letter-spacing: 1px;
+        }
+        label {
+            font-weight: 500;
+            margin-bottom: 6px;
+            display: block;
+            color: #444;
+        }
+        textarea, input[type="number"] {
+            width: 100%;
+            margin-bottom: 18px;
+            padding: 10px 12px;
+            border: 1.5px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #f7faff;
+            transition: border 0.2s;
+        }
+        textarea:focus, input[type="number"]:focus {
+            border-color: #2575fc;
+            outline: none;
+            background: #eef6ff;
+        }
+        button {
+            width: 100%;
+            padding: 12px 0;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(37,117,252,0.08);
+            transition: background 0.2s, transform 0.1s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
+            transform: translateY(-2px) scale(1.03);
+        }
+        .result {
+            background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+            padding: 22px 18px;
+            border-radius: 12px;
+            margin-top: 28px;
+            box-shadow: 0 2px 12px rgba(37,117,252,0.07);
+            animation: fadeIn 0.7s;
+        }
+        .result h3 {
+            color: #2575fc;
+            margin-top: 0;
+        }
+        .result p {
+            font-size: 1.08rem;
+            margin: 10px 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 22px 8px 18px 8px;
+                margin: 20px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>AI Task Management System</h2>
+        <form method="post" autocomplete="off">
+            <label>Task Description:</label>
+            <textarea name="task_description" rows="4" required placeholder="Describe the task..."></textarea>
+            <label>User Workload:</label>
+            <input type="number" name="user_workload" min="1" max="20" required placeholder="e.g. 5">
+            <button type="submit">Analyze Task</button>
+        </form>
+        {% if result %}
+        <div class="result">
+            <h3>Analysis Result</h3>
+            <p><strong>Predicted Category:</strong> {{ result.category }}</p>
+            <p><strong>Predicted Priority:</strong> {{ result.priority }}</p>
+            <p><strong>Recommended User:</strong> {{ result.user }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
